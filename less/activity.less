@@ -1,0 +1,112 @@
+@import "config.less";
+body{
+    .body{
+        .container{
+            flex-wrap: wrap;
+            padding: 60px 0 120px;
+            .flex(row, flex-start, center);
+            >div{
+                padding: 8px;
+                height: 412px;
+                position: relative;
+                background-color: #f9f9f9;
+                width: calc(~'(100% - 30px) / 3');
+                ~div{
+                    margin-left: 15px;
+                }
+                &:nth-of-type(3){
+                    ~div{
+                        margin-top: 20px;
+                    }
+                }
+                &:nth-of-type(3n+1){
+                    margin-left: 0;
+                }
+                .img{
+                    width: 100%;
+                    padding-top: 56.25%;
+                }
+                time{
+                    color: #9b9b9b;
+                    font-size: 12px;
+                    line-height: 17px;
+                }
+                h2{
+                    margin-top: 20px;
+                   a{
+                       color: #606060;
+                       font-size: 24px;
+                       line-height: 32px;
+                   } 
+                }
+                ul{
+                    height: 63px;
+                    overflow: hidden;
+                    margin-top: 10px;
+                    li{
+                        color: #606060;
+                        font-size: 15px;
+                        font-weight: 400;
+                        line-height: 21px;
+                        text-overflow: ellipsis;
+                    }
+                }
+                .bottom{
+                    left: 8px;
+                    bottom: 15px;
+                    position: absolute;
+                    width: calc(~'100% - 16px');
+                    .flex(row, space-between, center);
+                    span{
+                        color: #97a9c8;
+                        font-size: 15px;
+                        font-weight: 400;
+                        position: relative;
+                        padding-left: 15px;
+                        &:before{
+                            left: 3px;
+                            width: 5px;
+                            height: 5px;
+                            content: '';
+                            position: absolute;
+                            border-radius: 50%;
+                            display: inline-block;
+                            top: calc(~'50% - 2.5px');
+                            background-color: #97a9c8;
+                        }
+                    }
+                    a{
+                        color: @orange;
+                        font-size: 15px;
+                        font-weight: 400;
+                    }
+                }
+            }
+        }
+    }
+    .topLayer{
+        .container{
+            
+        }
+    }
+}
+@media (max-width: 1199px){}
+@media (max-width: 991px){
+    body .body .container{
+        padding-left: 8px;
+        padding-right: 8px;
+    }}
+@media (max-width: 767px){
+    body .body .container > div{
+        height: auto;
+        width: 100%;
+    }
+    body .body .container > div ~ div{
+        margin-left: 0;
+        margin-top: 15px;
+    }
+    body .body .container > div .bottom{
+        margin-top: 15px;
+        position: initial;
+    }
+}

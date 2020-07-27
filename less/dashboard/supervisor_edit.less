@@ -1,0 +1,72 @@
+@import "config.less";
+body{
+    .body{
+        .container{
+            .content{
+                .form{
+					>div{
+						~div{
+							margin-top: 30px;
+						}
+						.flex(column, flex-start, flex-start);
+						label{
+                            color: #000;
+							margin-bottom: 15px;
+						}
+						.inputbox{
+                            width: 230px;
+                            padding-bottom: 4px;
+							input[type="text"]{
+                                width: 100%;
+                                transition: .3s;
+							}  
+							&.inputbox_text{
+								position: relative;
+								&:before{
+									left: 0;
+									bottom: 0;
+									width: 100%;
+									height: 1px;
+									content: '';
+									transition: .3s;
+									position: absolute;
+									display: inline-block;
+									background-color: #c4c4c4;
+								}
+								&.now{
+									&:before{
+										background-color: @light;
+										box-shadow: 0 0 15px @micro_light;
+                                    }
+                                    input[type="text"]{
+                                        color: #000;
+                                    }
+								}
+							}
+							&.inputbox_circleImg{
+                                width: 123px;
+								height: 123px;
+								.imgTag{
+                                    width: 123px;
+									height: 123px;
+                                    border-radius: 50%;
+                                    label{
+                                        border-radius: 50%;
+                                    }
+								}
+							}
+						}
+					}
+					>input[type="submit"]{
+						display: none;
+					}
+                }
+            }
+        }
+    }
+    .fixbox{
+        .container{
+            
+        }
+    }
+}

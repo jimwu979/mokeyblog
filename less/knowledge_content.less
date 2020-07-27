@@ -1,0 +1,180 @@
+@import "config.less";
+body{
+    .body{
+        padding-bottom: 120px;
+        section{
+            width: 100%;
+            &.banner{
+                width: 100%;
+                height: 536px;
+                background-size: cover;
+            }
+            &.article{
+                .container{
+                    >div{
+                        &.information{
+                            padding-top: 30px;
+                            ul{
+                                li{
+                                    color: #97a9c8;
+                                    font-size: 12px;
+                                    font-weight: 600;
+                                    padding-left: 14px;
+                                    position: relative;
+                                    display: inline-block;
+                                    margin-right: 15px;
+                                    &:before{
+                                        content: '';
+                                        display: inline-block;
+                                        width: 5px;
+                                        height: 5px;
+                                        border-radius: 50%;
+                                        position: absolute;
+                                        left: 2px;
+                                        top: 9px;
+                                        background-color: #97a9c8;
+                                    }
+                                }
+                            }
+                            h1{
+                                font-weight: 500;
+                                margin-top: 15px;
+                                font-size: 26px;
+                                line-height: 34px;
+                            }
+                            time{
+                                padding: 20px 0;
+                                margin-top: 30px;
+                                display: block;
+                                border-top: 1px solid rgba(0,0,0,.1);
+                                border-bottom: 1px solid rgba(0,0,0,.1);
+                            }
+                            .author{
+                                padding-top: 15px;
+                            }
+                        }
+                        &.content{
+                            padding-top: 30px;
+                            *{
+                                padding-bottom: 15px;
+                            }
+                            h2{
+                                padding-top: 30px;
+                                font-weight: 500;
+                                font-size: 26px;
+                                padding-bottom: 15px;
+                            }
+                            h3{
+                                padding-top: 15px;
+                                font-weight: 500;
+                                font-size: 20px;
+                            }
+                            p{
+                                font-weight: 400;
+                            }
+                        }
+                    }
+                }
+            }
+            &.more{
+                margin-top: 60px;
+                .container{
+                    padding-top: 15px;
+                    position: relative;
+                    &:before{
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 1px;
+                        content: '';
+                        position: absolute;
+                        display: inline-block;
+                        background-color: #DDD;
+                    }
+                    .content{
+                        width: 100%;
+                        padding-top: 30px;
+                        .flex(row, space-around, center);
+                        a{
+                            width: 220px;
+                            padding: 8px;
+                            height: 260px;
+                            transition: .7s;
+                            display: inline-block;
+                            background-color: rgba(0,0,0,.03);
+                            box-shadow: 0 2px 24px rgba(0,0,0,0);
+                            .img{
+                                padding-top: 60%;
+                            }
+                            time{
+                                margin-top: 8px;
+                                display: inline-block;
+                            }
+                            .title{
+                                font-size: 18px;
+                                font-weight: 400;
+                                padding-top: 15px;
+                            }
+                            &:hover{
+                                box-shadow: 0 6px 36px rgba(0,0,0,.15);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media (max-width: 1199px){}
+@media (max-width: 991px){
+    body .body section.more{
+        border-top: 0;
+        position: relative;
+    }
+    body .body section.more .container:before{
+        left: 15px;
+        width: calc(~'100% - 30px');
+    }
+    body .body section.more .container .content a{
+        width: 180px;
+        height: 240px;
+    }
+    body .body section.content .container .information .photo_group .content > div{
+        height: calc(~'(100vw - 30px - 120px) * (60/100)');
+    }
+}
+@media (max-width: 767px){
+    body .body section.banner{
+        height: 60vw;
+    }
+    body .body section.article .container > div.information time{
+        padding: 12px 0px;
+        margin-top: 20px;
+    }
+    body .body section.more .container .content{
+        .flex(column, center, center);
+    }
+    body .body section.more .container .content a{
+        width: 100%;
+        height: 100px;
+        position: relative;
+        padding-left: 108px;
+        margin-bottom: 15px;
+        .flex(column, flex-start, flex-start);
+        .img{
+            top: 0;
+            left: 0;
+            width: 100px;
+            height: 100%;
+            padding-top: 0;
+            position: absolute;
+        }
+        time{
+            margin-top: 0;
+            font-size: 12px;
+        }
+        .title{
+            padding-top: 4px;
+        }
+    }
+}

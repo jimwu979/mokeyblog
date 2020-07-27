@@ -1,0 +1,56 @@
+body .body .container {
+  padding-bottom: 120px;
+}
+body .body .container * {
+  font-weight: 400;
+  color: #3a3939;
+  font-size: 15px;
+}
+body .body .container h1 {
+  color: #3a3939;
+  font-size: 24px;
+  margin-top: 60px;
+  font-weight: 700;
+  padding-left: 10px;
+  border-left: 3px solid #f29221;
+}
+body .body .container > div {
+  margin-top: 45px;
+}
+body .body .container > div h2 {
+  margin-bottom: 10px;
+  line-height: 22px;
+}
+body .body .container > div h2 span {
+  width: 20px;
+  color: #FFF;
+  height: 20px;
+  font-weight: 400;
+  line-height: 20px;
+  margin-right: 5px;
+  text-align: center;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: #f29221;
+}
+body .body .container > div ul.disc {
+  padding-left: 45px;
+}
+body .body .container > div ul.disc li {
+  list-style-type: disc;
+}
+body .body .container > div ul li h3 {
+  font-weight: 600;
+  margin-top: 10px;
+}
+body .body .container > div > p {
+  margin-top: 15px;
+}
+body .body .container > div > p b {
+  font-weight: 600;
+}
+@media (max-width: 767px) {
+  body .body .container h1 {
+    margin-top: 30px;
+  }
+}

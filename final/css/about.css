@@ -1,0 +1,247 @@
+body .body {
+  padding-bottom: 120px;
+}
+body .body section {
+  width: 100%;
+  background-position: center 0;
+}
+body .body section:nth-of-type(1) {
+  height: 536px;
+  background-size: cover;
+}
+body .body section:nth-of-type(1) .container {
+  height: 100%;
+  padding-left: 30px;
+  padding-bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+body .body section:nth-of-type(1) .container h1 {
+  color: #FFF;
+  font-size: 64px;
+  font-weight: 600;
+  line-height: 64px;
+}
+body .body section:nth-of-type(1) .container p {
+  color: #FFF;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 36px;
+  padding-top: 30px;
+}
+body .body section:nth-of-type(2) {
+  height: 1030px;
+  position: relative;
+  background-size: 90%;
+  background-color: #f9f9f9;
+  background-repeat: no-repeat;
+  background-image: url(/img/about/carousel-bg.png);
+}
+body .body section:nth-of-type(2) > div {
+  width: 600px;
+  height: 600px;
+  position: absolute;
+  top: 150px;
+  left: calc(50% - 300px);
+  opacity: 0;
+  transition: 0.5s linear;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body .body section:nth-of-type(2) > div.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+body .body section:nth-of-type(2) > div .img {
+  width: 180px;
+  height: 180px;
+}
+body .body section:nth-of-type(2) > div .text {
+  line-height: 24px;
+  color: #4a4a4a;
+  font-size: 18px;
+  padding: 60px 30px 0;
+  position: relative;
+  font-weight: 400;
+  opacity: 0.7;
+}
+body .body section:nth-of-type(2) > div .text:before {
+  content: '';
+  display: inline-block;
+  width: 100%;
+  height: 1px;
+  background-color: #ccc;
+  position: absolute;
+  left: 0;
+  top: 30px;
+}
+body .body section:nth-of-type(3) .container {
+  padding-top: 120px;
+}
+body .body section:nth-of-type(3) .container > h2 {
+  width: 290px;
+  margin: 0 auto;
+  font-weight: 500;
+  text-align: center;
+  border-left: 5px solid #f29221;
+  border-right: 5px solid #f29221;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+body .body section:nth-of-type(3) .container > p {
+  font-size: 15px;
+  font-weight: 400;
+  text-align: center;
+  max-width: 624px;
+  margin: 0 auto 15px;
+  line-height: 32px;
+}
+body .body section:nth-of-type(3) .container select {
+  float: right;
+  border: 1px solid #f29221;
+  font-weight: 400;
+  font-size: 15px;
+}
+body .body section:nth-of-type(3) .container .group {
+  padding-top: 90px;
+}
+body .body section:nth-of-type(3) .container .group > div {
+  display: none;
+  flex-wrap: wrap;
+}
+body .body section:nth-of-type(3) .container .group > div.show {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+body .body section:nth-of-type(3) .container .group > div .item {
+  display: inline-block;
+}
+body .body section:nth-of-type(3) .container .group > div .item ~ .item {
+  margin-left: calc((100% - (154px * 5)) / 4);
+}
+body .body section:nth-of-type(3) .container .group > div .item:nth-of-type(5n+1) {
+  margin-left: 0;
+}
+body .body section:nth-of-type(3) .container .group > div .item:nth-of-type(5) ~ .item {
+  margin-top: 90px;
+}
+body .body section:nth-of-type(3) .container .group > div .item .img {
+  width: 154px;
+  height: 154px;
+  border-radius: 50%;
+}
+body .body section:nth-of-type(3) .container .group > div .item .name {
+  color: #3a3939;
+  font-size: 18px;
+  margin-top: 15px;
+  font-weight: 500;
+}
+body .body section:nth-of-type(3) .container .group > div .item .company {
+  color: #3a3939;
+  font-weight: 15;
+  font-weight: 400;
+}
+body .body section:nth-of-type(3) .container .group > div .item .occupation {
+  color: #3a3939;
+  font-weight: 15;
+  margin-top: 10px;
+  font-weight: 400;
+}
+@media (max-width: 1199px) {
+  body .body section:nth-of-type(2) {
+    height: 800px;
+  }
+}
+@media (max-width: 991px) {
+  body .body section:nth-of-type(3) .container {
+    width: 750px;
+  }
+  body .body section:nth-of-type(3) .container .group > div .item .img {
+    height: 0;
+    width: 100%;
+    padding-top: 100%;
+  }
+  body .body section:nth-of-type(3) .container .group > div .item {
+    width: calc((100% - (40px * 3))/4);
+  }
+  body .body section:nth-of-type(3) .container .group > div .item ~ .item {
+    margin-left: 40px;
+  }
+  body .body section:nth-of-type(3) .container .group > div .item:nth-of-type(4n+1) {
+    margin-left: 0;
+  }
+  body .body section:nth-of-type(3) .container .group > div .item:nth-of-type(4) ~ .item {
+    margin-top: 90px;
+  }
+}
+@media (max-width: 767px) {
+  body .body section:nth-of-type(1) {
+    height: 66vw;
+  }
+  body .body section:nth-of-type(1) .container {
+    padding-bottom: 30px;
+  }
+  body .body section:nth-of-type(1) .container h1 {
+    font-size: 30px;
+    line-height: 30px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+  body .body section:nth-of-type(1) .container p {
+    font-size: 18px;
+    line-height: 18px;
+    padding-top: 15px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+  body .body section:nth-of-type(2) {
+    height: 500px;
+  }
+  body .body section:nth-of-type(2) > div {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 500px;
+  }
+  body .body section:nth-of-type(2) > div .img {
+    width: 100px;
+    height: 100px;
+  }
+  body .body section:nth-of-type(2) > div .text {
+    font-size: 14px;
+    line-height: 20px;
+    padding-top: 30px;
+  }
+  body .body section:nth-of-type(2) > div .text:before {
+    display: none;
+  }
+  body .body section:nth-of-type(3) .container {
+    padding-top: 60px;
+  }
+  body .body section:nth-of-type(3) .container > p {
+    font-size: 14px;
+    line-height: 24px;
+  }
+  body .body section:nth-of-type(3) .container select {
+    height: 28px;
+    line-height: 26px;
+    background-color: #fff;
+  }
+  body .body section:nth-of-type(3) .container .group > div .item {
+    width: calc((100% - 30px) / 2);
+  }
+  body .body section:nth-of-type(3) .container .group > div .item ~ .item {
+    margin-left: 30px;
+  }
+  body .body section:nth-of-type(3) .container .group > div .item:nth-of-type(2) ~ .item {
+    margin-top: 45px;
+  }
+  body .body section:nth-of-type(3) .container .group > div .item:nth-of-type(2n+1) {
+    margin-left: 0;
+  }
+}

@@ -1,0 +1,70 @@
+body .body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+body .body .main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+body .body .main img {
+  width: 122px;
+  height: 63px;
+}
+body .body .main form {
+  width: 329px;
+  margin-top: 34px;
+  border-radius: 6px;
+  background-color: #fff;
+  padding: 38px 25px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+body .body .main form label {
+  color: #3f3f3f;
+  font-size: 14px;
+  line-height: 16px;
+}
+body .body .main form input {
+  width: 100%;
+  color: #323232;
+  font-size: 14px;
+  margin-top: 15px;
+  margin-bottom: 30px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid #dbdbdb;
+}
+body .body .main form input:last-of-type {
+  width: 85px;
+  color: #FFF;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 0;
+  line-height: 32px;
+  text-align: center;
+  border-radius: 2px;
+  border-bottom: none;
+  align-self: flex-end;
+  display: inline-block;
+  background-color: #f29221;
+}
+body .body .main form input:last-of-type:hover {
+  background-color: #FDBB3A;
+  box-shadow: 0 5px 30px 0 rgba(253, 187, 58, 0.5);
+}
+body .body .main .error {
+  color: #f0425c;
+  font-size: 14px;
+  margin-top: 11px;
+  line-height: 16px;
+  align-self: flex-start;
+  text-shadow: 0 1px 0 #ffffff;
+}
