@@ -3,7 +3,7 @@
 <head>
     <?php include('component/head.php'); ?>
     <link rel="stylesheet" href="css/blog_list.css">
-    <title>UXTW | 社團法人台灣使用者經驗設計協會</title>
+    <title>部落格 | 連猴子都會用的後台系統</title>
 </head>
 <body>
     <div class="container">
