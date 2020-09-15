@@ -59,31 +59,3 @@
   A-->G[文章瀏覽]
 
   ```
-### 未來發展方向
-
-  1. 前端改為 vue
-  2. 後端使用 Laravel
-
-        * plugin
-
-          > 後台前端用到的library
-
-    * source             
-      > 經由後台上傳的檔案放置位置，例如圖片、影片...             
-    * download         
-      > 前台供使用者下載的檔案的放置位置         
-    * img         
-      > 前台各頁面圖檔放置的資料夾          
-    * js          
-      > 前台各頁面的js          
-    * plugin           
-      > 前端library          
-    * less      
-      > 前台的less
-      * dashboard
-        > 後台的less
-        
-  2. 未來可能發展方向：
-      * 前端改為 vue
-      * 後端使用 Laravel
-      * PWA
