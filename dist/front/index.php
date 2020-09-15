@@ -8,7 +8,6 @@
 <body>
     <?php include('content/index.html'); ?>
     <?php include('component/endOfBody.php'); ?>
-    <script src='js/main.js'></script>
     <script src='js/index.js'></script>
 </body>
 </html>

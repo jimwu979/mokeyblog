@@ -8,7 +8,6 @@
 <body>
     <?php include('content/member.html'); ?>
     <?php include('component/endOfBody.php'); ?>
-    <script src='js/main.js'></script>
     <script src='js/member.js'></script>
 </body>
 </html>
