@@ -1,8 +1,10 @@
 <header>
     <div class="container">
-        <img src="img/logo.jpg">
+        <a href="index.php">
+            <img src="img/logo.jpg">
+        </a>
         <nav>
-            <a href="index.php">首頁</a>
+            <a class="now" href="index.php">首頁</a>
             <a href="blog_list.php">部落格</a>
             <a href="member.php">團隊成員</a>
             <a href="connect.php">聯絡我們</a>
@@ -11,6 +13,7 @@
 </header>
 <footer id="footer">
     <div class="container">
+    Copyright © MonkeyBlog. All Rights Reserved.
     </div>
 </footer>
 <script src='plugin/jquery.js'></script>

@@ -1,1 +1,1 @@
-"use strict";
+"use strict";!function(){var t=[];function n(){var n=$("#banner_box"),i=n.children().length;n.width(i*t.winW),n.children().width(t.winW)}t.$window=$(window),t.win=$("#fixbox"),t.winW=t.win.width(),t.winH=t.win.height(),n(),$(window).resize(n),$("#switch div").click(function(){var n=$(this),i=0==n.index()?-1:1,e=$("#banner_box").children().length,w=n.parent().siblings("ul").children("li.now"),r=w.index()+i;e<=r?r=0:r<0&&(r=e-1),w.removeClass("now").parent().children().eq(r).addClass("now");var d=r*t.winW*-1;$("#banner_box").css("left",d)})}();
