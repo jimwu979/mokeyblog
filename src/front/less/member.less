@@ -2,7 +2,42 @@
 body{
     .body{
         .container{
-            
+            width: 732px;
+            flex-wrap: wrap;
+            padding-top: 68px;
+            .flex(row, flex-start, flex-start);
+            >div{
+                width: 214px;
+                height: 271px;
+                margin-left: 45px;
+                padding: 11px 19px;
+                border: 1px solid #000;
+                .flex(column, flex-start, flex-start);
+                &:nth-of-type(3n+1){
+                    margin-left: 0;
+                }
+                &:nth-of-type(3){
+                    ~div{
+                        margin-top: 60px;
+                    }
+                }
+                div{
+                    width: 176px;
+                    height: 176px;
+                    background-size: cover;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                }
+                h2{
+                    font-size: 18px;
+                    margin-top: 15px;
+                }
+                p{
+                    font-size: 14px;
+                    margin-top: 10px;
+                    line-height: 16px;
+                }
+            }
         }
     }
 }
