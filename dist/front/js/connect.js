@@ -1,1 +1,1 @@
-"use strict";
+"use strict";$("form").submit(function(){var e=$("#name").val().length,t=$("#phone").val().length,l=$("#company").val().length,n=$("#job").val().length,a=$("#message").val().length;0!=e&&0!=t&&0!=l&&0!=n&&0!=a||(alert("請將所有欄位填寫完整"),event.preventDefault())});
