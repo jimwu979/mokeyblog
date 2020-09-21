@@ -38,6 +38,7 @@
       * endOfBody.php <!-- (前台各頁面 <body> 最下方共用的 html) -->
       * head.php      <!-- (前台各頁面中 <head> 共用的 html) -->
     * content <!-- 各頁面的內容 -->
+    * funuction <!-- 後端的function，例如 from.php -->
     * css
     * img
     * js
