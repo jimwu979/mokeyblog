@@ -18,10 +18,11 @@ gulp.task('build_CSS', function (done) {
         .pipe(gulp.dest('./dist/front/css/'));
         
     done();
+    
 });
 
 gulp.task('build_JS', function(done){
-    
+
     gulp.src('src/back/js/*.js')
         .pipe(babel({
             presets: ['@babel/env']
@@ -37,6 +38,7 @@ gulp.task('build_JS', function(done){
         .pipe(gulp.dest('./dist/front/js/'));
         
     done();
+    
 });
 
 gulp.task('default',function(){

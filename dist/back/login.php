@@ -6,9 +6,7 @@
     <title>登入 | 連猴子都會用的後台系統</title>
 </head>
 <body>
-    <div class="container">
-        <?php include('content/login.php'); ?>
-    </div>
+    <?php include('content/login.html'); ?>
     <script src='plugin/jquery.js'></script>
     <script src='js/main.js'></script>
     <script src='js/login.js'></script>

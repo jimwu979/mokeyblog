@@ -1,6 +1,19 @@
-<div class="body">
-    <div class="container">
+<form action="index.php">
+    <img src="img/logo.png">
+    <h1>登入後台</h1>
+    <div class="COMPONENT_inputbox">
+        <input type="text" placeholder="帳號">
     </div>
-</div>
-<div class="fixbox">
-</div>
+    <div class="COMPONENT_inputbox">
+        <input type="text" placeholder="密碼">
+    </div>
+    <!--
+        line: 17
+         
+        <div class="error"> 
+        預設情況下沒有 .show 這個 class
+        若帳號密碼輸入錯誤，才顯示此行
+    -->
+    <div class="error show">帳號或密碼輸數錯誤</div>
+    <input type="submit" value="登入">
+</form>

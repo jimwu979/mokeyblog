@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="container">
-        <?php include('content/member.php'); ?>
+        <?php include('content/member.html'); ?>
         <?php include('component/endOfBody.php'); ?>
     </div>
     <script src='plugin/jquery.js'></script>

@@ -1,1 +1,1 @@
-"use strict";
+"use strict";$(".main_btn .save").click(function(){for(var t=$(".COMPONENT_elementbox > .element"),e=t.length,a=$("#form").attr("action")+"?",i=0;i<e;i++)a+=t.eq(i).find("h3").attr("data-id")+"&";$("#form").attr("action",a).trigger("submit")});

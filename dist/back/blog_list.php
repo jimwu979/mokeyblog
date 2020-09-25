@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="container">
-        <?php include('content/blog_list.php'); ?>
+        <?php include('content/blog_list.html'); ?>
         <?php include('component/endOfBody.php'); ?>
     </div>
     <script src='plugin/jquery.js'></script>

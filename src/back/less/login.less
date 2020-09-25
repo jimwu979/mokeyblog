@@ -1,0 +1,71 @@
+@import "config.less";
+body{
+    margin: 0;
+    height: 100vh;
+    background-repeat: repeat;
+    .flex(row, center, center);
+    background-size: 50px 50px;
+    background-image: url(../img/paper.jpg);
+    form{
+        width: 420px;
+        height: 380px;
+        border-radius: 4px;
+        background-color: #fff;
+        .flex(column, center, center);
+        box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
+        img{
+            width: 80px;
+            height: 80px;
+        }
+        h1{
+            color: #555;
+            font-size: 24px;
+            margin-top: 15px;
+            font-weight: 400;
+            line-height: 28px;
+        }
+        .COMPONENT_inputbox{
+            width: 200px;
+            margin-top: 33px;
+            ~.COMPONENT_inputbox{
+                margin-top: 15px;
+            }
+        }
+        .error{
+            opacity: 0;
+            color: @orange;
+            font-size: 14px;
+            margin-top: 15px;
+            line-height: 24px;
+            pointer-events: none;
+            &.show{
+                opacity: 1;
+                pointer-events: auto;
+            }
+        }
+        input[type="submit"]{
+            border: 0;
+            color: #FFF;
+            width: 100px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: .2s;
+            margin-top: 21px;
+            border-bottom: 0;
+            line-height: 21px;
+            border-radius: 2px;
+            background-color: @orange;
+            .flex(row, center, center);
+            &:hover{
+                box-shadow: @light;
+                background-color: @orange_light;
+            }
+        }
+    }
+}
+@media (max-width: 1199px){}
+@media (max-width: 991px){}
+@media (max-width: 767px){
+    
+}
