@@ -77,6 +77,8 @@ global.winH = global.win.height();
     }
 
 function init(){
+    global.winW = global.win.width();
+    global.winH = global.win.height();
     COMPONENT_reset_elementbox_height();
     COMPONENT_reset_element_position();
 }

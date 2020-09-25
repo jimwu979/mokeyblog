@@ -206,6 +206,37 @@
             }
         }
     }
+    table.COMPONENT_tablelist{
+        margin-top: 30px;
+        width: 100%;
+        thead{
+            tr{
+                th{
+                    text-align-last: left;
+                    ~th{
+                        padding-left: 15px;
+                    }
+                }
+            }
+        }
+        tbody{
+            tr{
+                td{
+                    height: 50px;
+                    &:nth-last-of-type(1){
+                        background-image: url(../img/edit.svg);
+                        background-size: 18px 18px;
+                    }
+                    img{
+                        height: 100%;
+                    }
+                }
+                ~tr{
+                    border-top: 1px solid #dbdbdb;
+                }
+            }
+        }
+    }
 //body
     body{
         background-repeat: repeat;
@@ -328,7 +359,12 @@
                 }
             }
             .fixbox{
-                
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                position: fixed;
+                pointer-events: none;
             }
             header{
                 top: 0;
@@ -758,6 +794,8 @@
                     box-shadow: 0 0 0 transparent;
                     background-color: transparent;
                     h1{
+                        font-size: 24px;
+                        line-height: 28px;
                     }
                     h2{
                         +*{
