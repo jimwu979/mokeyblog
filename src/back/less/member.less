@@ -1,8 +1,52 @@
 @import "config.less";
 body{
     .body{
-        .container{
-            
+        main{
+            form{
+                h1{
+                    
+                }
+                .COMPONENT_elementbox{
+                    margin-top: 30px;
+                    .element{
+                        >label{
+                            
+                        }
+                        .content{
+                            .flex(row, flex-start, center);
+                            >.img{
+                                padding-right: 19px;
+                                .COMPONENT_inputbox_image{
+                                    width: 100px;
+                                    height: 100px;
+                                }
+                            }
+                            .text{
+                                margin-left: 15px;
+                                .COMPONENT_inputbox_text{
+                                    width: 200px;
+                                    ~.COMPONENT_inputbox_text{
+                                        margin-top: 15px;
+                                        margin-left: 0;
+                                        input{
+                                            
+                                        }
+                                    }
+                                }
+                            }
+                            .COMPONENT_inputbox_dropdown{
+                                pointer-events: none;
+                                &:after{
+                                    display: none;
+                                }
+                            }
+                        }
+                        .btn_box{
+                            
+                        }
+                    }
+                }
+            }
         }
     }
 }

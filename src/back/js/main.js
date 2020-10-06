@@ -118,6 +118,23 @@ global.winH = global.win.height();
                                     <input type="file" id="img_">
                                     <label for="upload_img"></label>
                                 </div>`
+                },
+                'member': {
+                    'label': '成員',
+                    'content': `<div class="img">
+                                    <div class="COMPONENT_inputbox_image">
+                                        <input type="file" id="upload_img" accept="image/jpeg, image/png">
+                                        <label for="upload_img"></label>
+                                    </div>
+                                </div>
+                                <div class="text">
+                                    <div class="COMPONENT_inputbox_text">
+                                        <input type="text" placeholder="姓名">
+                                    </div>
+                                    <div class="COMPONENT_inputbox_text">
+                                        <input type="text" placeholder="職位">
+                                    </div>
+                                </div>`
                 }
             };
             let element_type = _this.parent().siblings('.content').children().children('div').attr('data-type');
@@ -161,6 +178,8 @@ global.winH = global.win.height();
                     article += `<p>` + $element_eq.find('.content textarea').val() + `</p>`
                 } else if (element_type == 'image') {
                     article += `<img src='` + $element_eq.find('.COMPONENT_inputbox_image').css('background-image') + `'>`
+                } else if (element_type == 'member'){
+                    
                 }
                 // $('.COMPONENT_article').append(`
                 //     <div style='width: 300px; height: 200px;background-image: ` + $element_eq.find('.COMPONENT_inputbox_image').css('background-image') +
