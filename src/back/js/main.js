@@ -23,7 +23,7 @@ global.winH = global.win.height();
         var reader = new FileReader();
         reader.readAsDataURL(_this['0']['files']['0']);
         reader.onload = function(e){
-            _this.parent().css('background-image', 'url('+ e.target.result +')');
+            _this.parent().css('background-image', `url(${e.target.result})`);
         }
     }
     // elementbox
@@ -77,14 +77,52 @@ global.winH = global.win.height();
             let prevElement_T = parseInt($prevElement.css('top'));
             let nextElement_H = COMPONENT_getElementHeight($nextElement);
             let nextElement_html = $nextElement.html();
+            let nextElement_type = $nextElement.attr('data-type');
+            let nextElement_value;
+            switch (nextElement_type) {
+                case 'title':
+                    nextElement_value = {
+                        'htmlTag': 'input',
+                        'value': $nextElement.find('input').val()
+                    }
+                    break;
+                case 'paragraphy':
+                    nextElement_value = {
+                        'htmlTag': 'textarea',
+                        'value': $nextElement.find('textarea').val()
+                    }
+                    break;
+                case 'image':
+                    nextElement_value = {
+                        'htmlTag': 'input',
+                        'value': $nextElement.find('input').val()
+                    }
+                    break;
+                case 'member':
+                    nextElement_value = {
+                        'htmlTag': 'input',
+                        // 'value': $nextElement.find('input').val()
+                        'value': 0
+                    }
+                    break;
+            }
             $nextElement.css('top', prevElement_T);
             let element_spacing = (global.winW >= 768) ? 15 : 7;
             $prevElement.css('top', prevElement_T + nextElement_H + element_spacing);
             setTimeout(function(){
                 $prevElement.before(
-                    `<div class="element" style="top: `+ prevElement_T +`px">`+ 
-                        nextElement_html +
-                    `</div>`);
+                    `<div   class="element" 
+                            style="top: ${prevElement_T}px"
+                            data-type="${nextElement_type}"
+                    >
+                        ${nextElement_html}
+                    </div>`);
+                let $prevElement_prev = $prevElement.prev();
+                if ($prevElement_prev.attr('data-type') == 'image') {
+                    $prevElement_prev.find(nextElement_value['htmlTag']).value = nextElement_value['value'];
+                }else if($prevElement_prev.attr('data-type') == 'addElement'){
+                    $prevElement_prev.find(nextElement_value['htmlTag']).val(nextElement_value['value']);
+                }
                 $nextElement.remove();
                 $elementbox.css('pointer-events', '');
             }, 200);
@@ -109,7 +147,7 @@ global.winH = global.win.height();
                 },
                 'paragraphy': {
                     'label': '段落',
-                    'content': `<textarea class="COMPONENT_inputbox_textarea">`+
+                    'content':  `<textarea class="COMPONENT_inputbox_textarea">`+
                                 `</textarea>`
                 },
                 'image': {
@@ -150,9 +188,13 @@ global.winH = global.win.height();
                 image_id = year + month + date + hour + minute + second;
             }
             _this.parents('.element').before(`
-                <div class="element" data-type=`+ element_type +`>
-                    <label>`+ element_content[element_type]['label'] +`</label>
-                    <div class="content">`+ element_content[element_type]['content'] +`</div>
+                <div class="element" data-type=${element_type}>
+                    <label>
+                        ${element_content[element_type]['label']}
+                    </label>
+                    <div class="content">
+                        ${element_content[element_type]['content']}
+                    </div>
                     <div class="btn_box">
                         <div class="delete"></div>
                         <div class="up"></div>
@@ -173,11 +215,19 @@ global.winH = global.win.height();
                 let element_type = $element_eq.attr('data-type');
                 let element_tag;
                 if (element_type == 'title') {
-                    article += `<h3>` + $element_eq.find('.content input').val() + `</h3>`
+                    article += 
+                        `<h3>
+                            ${$element_eq.find('.content input').val()}
+                        </h3>`
                 } else if (element_type == 'paragraphy') {
-                    article += `<p>` + $element_eq.find('.content textarea').val() + `</p>`
+                    article += 
+                        `<p>
+                            ${$element_eq.find('.content textarea').val()}
+                        </p>`
                 } else if (element_type == 'image') {
-                    article += `<img src='` + $element_eq.find('.COMPONENT_inputbox_image').css('background-image') + `'>`
+                    let background_image = $element_eq.find('.COMPONENT_inputbox_image').css('background-image');
+                    article += 
+                        `<img src='${background_image}'>`
                 } else if (element_type == 'member'){
                     
                 }
