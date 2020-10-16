@@ -1,5 +1,5 @@
-(function(){
-'use strict';
+// (function(){
+// 'use strict';
 const global = [];
 global.window = $(window),
 global.win = $('#fixbox'),
@@ -98,11 +98,23 @@ global.winH = global.win.height();
                         'value': $nextElement.find('input').val()
                     }
                     break;
+                case 'addElement':
+                    nextElement_value = {}
+                    break;
                 case 'member':
                     nextElement_value = {
-                        'htmlTag': 'input',
-                        // 'value': $nextElement.find('input').val()
-                        'value': 0
+                        'image': {
+                            'htmlTag': 'input[type="file"]',
+                            'value': $nextElement.find('input[type="file"]').val()
+                        },
+                        'name': {
+                            'htmlTag': 'input[placeholder="姓名"]',
+                            'value': $nextElement.find('input[placeholder="姓名"]').val()
+                        },
+                        'job': {
+                            'htmlTag': 'input[placeholder="職位"]',
+                            'value': $nextElement.find('input[placeholder="職位"]').val()
+                        }
                     }
                     break;
             }
@@ -118,10 +130,33 @@ global.winH = global.win.height();
                         ${nextElement_html}
                     </div>`);
                 let $prevElement_prev = $prevElement.prev();
-                if ($prevElement_prev.attr('data-type') == 'image') {
-                    $prevElement_prev.find(nextElement_value['htmlTag']).value = nextElement_value['value'];
-                }else if($prevElement_prev.attr('data-type') == 'addElement'){
-                    $prevElement_prev.find(nextElement_value['htmlTag']).val(nextElement_value['value']);
+                switch ($prevElement_prev.attr('data-type')) {
+                    case 'title':
+                        $prevElement_prev
+                        .find(nextElement_value['htmlTag'])
+                        .val(nextElement_value['value']);
+                        break;
+                    case 'paragraphy':
+                        $prevElement_prev
+                        .find(nextElement_value['htmlTag'])
+                        .val(nextElement_value['value']);
+                        break;
+                    case 'image':
+                        $prevElement_prev
+                        .find(nextElement_value['htmlTag']).value
+                        = nextElement_value['value'];
+                        break;
+                    case 'member':
+                        $prevElement_prev
+                        .find(nextElement_value['image']['htmlTag']).value
+                        = nextElement_value['image']['value'];
+                        $prevElement_prev
+                            .find(nextElement_value['name']['htmlTag'])
+                            .val(nextElement_value['name']['value']);
+                        $prevElement_prev
+                            .find(nextElement_value['job']['htmlTag'])
+                            .val(nextElement_value['job']['value']);
+                        break;
                 }
                 $nextElement.remove();
                 $elementbox.css('pointer-events', '');
@@ -159,18 +194,20 @@ global.winH = global.win.height();
                 },
                 'member': {
                     'label': '成員',
-                    'content': `<div class="img">
-                                    <div class="COMPONENT_inputbox_image">
-                                        <input type="file" id="upload_img" accept="image/jpeg, image/png">
-                                        <label for="upload_img"></label>
+                    'content': `<div class="member">
+                                    <div class="img">
+                                        <div class="COMPONENT_inputbox_image">
+                                            <input type="file" id="upload_img" accept="image/jpeg, image/png">
+                                            <label for="upload_img"></label>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="text">
-                                    <div class="COMPONENT_inputbox_text">
-                                        <input type="text" placeholder="姓名">
-                                    </div>
-                                    <div class="COMPONENT_inputbox_text">
-                                        <input type="text" placeholder="職位">
+                                    <div class="text">
+                                        <div class="COMPONENT_inputbox_text">
+                                            <input type="text" placeholder="姓名">
+                                        </div>
+                                        <div class="COMPONENT_inputbox_text">
+                                            <input type="text" placeholder="職位">
+                                        </div>
                                     </div>
                                 </div>`
                 }
@@ -263,6 +300,26 @@ function init(){
     COMPONENT_reset_elementbox_height();
     COMPONENT_reset_element_position();
 }
+function ajax(dataContent){
+    if (!dataContent) console.log('請於 ajax() 中填入欲傳遞的資料');
+    let post_data = {
+        'url': window.location.pathname,
+        'content': dataContent
+    };
+    $.ajax({
+        type: 'POST',
+        url: 'function/ajax_receiver.php',
+        dataType: 'text',
+        data: post_data,
+        success: function(data){
+            console.log(data);
+        },
+        error: function(data){
+            console.log('ERROR!');
+            console.log('data.status :'+ data.status);
+        }
+    });
+}
 function toggleMenu(){
     $(this).parent().toggleClass('open');
 }
@@ -306,5 +363,5 @@ $('.main_btn .save').click(COMPONENT_buildArticle);
     }
     $('.body').on('scroll', function(){
         localStorage.setItem('scrollTop', $('.body').scrollTop());
-});
-}());
+    });
+// }());

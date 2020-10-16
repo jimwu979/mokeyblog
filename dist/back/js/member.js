@@ -1,1 +1,1 @@
-"use strict";
+"use strict";$(".ajax_btn").click(function(){var a={url:window.location.pathname,content:{a:"aaa",b:"bbb"}};$.ajax({type:"POST",url:"function/ajax_receiver.php",dataType:"text",data:a,success:function(a){console.log(a)},error:function(a){console.log("ERROR!"),console.log("data.status :"+a.status)}})});

@@ -1,1 +1,1 @@
-"use strict";
+"use strict";$("#asd").change(function(){console.log("change!!!")}),$("#save").click(function(){ajax({info:{title:!1,class:!1,date:{year:!1,month:!1,day:!1},img:!1,banner:!1,slideShow:!1},article:"",message:""}),event.preventDefault()});
