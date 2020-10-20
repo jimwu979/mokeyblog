@@ -2,70 +2,76 @@
     <main>
         <h1>部落格</h1>
         <a href="blog_list.php" class="COMPONENT_back">返回</a>
-        <section class="COMPONENT_questionBox">
+        <section class="COMPONENT_questionBox" id="sec_information">
             <div class="COMPONENT_question">
                 <div>標題</div>
                 <div class="COMPONENT_inputbox_text big">
-                    <input type="text" id="asd">
+                    <input type="text" data-savePosition="info.title">
                 </div>
             </div>
             <div class="COMPONENT_question">
                 <div>類別</div>
                 <div class="COMPONENT_inputbox_radio">
-                    <input  id="class_A" type="radio" checked>
+                    <input  id="class_A" value="class_A" type="radio" checked  data-savePosition="info.class">
                     <label for="class_A" class="check">類別A</label>
                 </div>
                 <div class="COMPONENT_inputbox_radio">
-                    <input  id="class_B" type="radio">
+                    <input  id="class_B" value="class_B" type="radio"  data-savePosition="info.class">
                     <label for="class_B">類別B</label>
                 </div>
                 <div class="COMPONENT_inputbox_radio">
-                    <input  id="class_C" type="radio">
+                    <input  id="class_C" value="class_C" type="radio"  data-savePosition="info.class">
                     <label for="class_C">類別C</label>
                 </div>
             </div>
             <div class="COMPONENT_question">
                 <div>日期</div>
                 <div class="COMPONENT_inputbox_text small">
-                    <input type="text" placeholder="西元年">
+                    <input type="text" placeholder="西元年" data-savePosition="info.date.year">
                 </div>
                 <div class="COMPONENT_inputbox_text small">
-                    <input type="text" placeholder="月">
+                    <input type="text" placeholder="月" data-savePosition="info.date.month">
                 </div>
                 <div class="COMPONENT_inputbox_text small">
-                    <input type="text" placeholder="日">
+                    <input type="text" placeholder="日" data-savePosition="info.date.day">
                 </div>
             </div>
             <div class="COMPONENT_question small">
                 <div>縮圖</div>
                 <div class="COMPONENT_inputbox_image">
-                    <input type="file" id="upload_img" accept="image/jpeg, image/png">
+                    <input type="file" id="upload_img" accept="image/jpeg, image/png" data-savePosition="info.img">
                     <label for="upload_img"></label>
                 </div>
             </div>
             <div class="COMPONENT_question small">
                 <div>banner</div>
                 <div class="COMPONENT_inputbox_image">
-                    <input type="file" id="upload_banner">
+                    <input type="file" id="upload_banner" data-savePosition="info.banner">
                     <label for="upload_banner"></label>
                 </div>
             </div>
             <div class="COMPONENT_question">
                 <div>顯示在首頁</div>
                 <label class="COMPONENT_togglebtn open" for="showOnSlideshow"></label>
-                <input type="checkbox" checked id="showOnSlideshow">
+                <input type="checkbox" checked id="showOnSlideshow" data-savePosition="info.slideShow">
             </div>
         </section>
         <section>
             <h2>文章內容</h2>
             <div class="COMPONENT_elementbox">
+                <h3>這是標題～</h3>
+                <p>這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ </p>
+                <p>這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ 這是一個段落～ </p>
+                <h3>這是標題</h3>
+                <img src="https://api.fnkr.net/testimg/936x560/0d2032/f0425c/?text=img">
+                <p>er aw e awe  sd fs ef we f we rw ef as df awe fa we f aefer aw e awe  sd fs ef we f we rw ef as df awe fa we f aefer aw e awe  sd fs ef we f we rw ef as df awe fa we f aefer aw e awe  sd fs ef we f we rw ef as df awe fa we f aefer aw e awe  sd fs ef we f we rw ef as df awe fa we f aefer aw e awe  sd fs ef we f we rw ef as df awe fa we f aefer aw e awe  sd fs ef we f we rw ef as df awe fa we f aef</p>
                 <div class="element" data-type="addElement">
                     <label>新增元件</label>
                     <div class="content">
                         <div class="COMPONENT_inputbox_dropdown">
                             <div data-type="paragraphy">段落</div>
                             <ul>
-                                <li data-type="title">小標題</li>
+                                <li data-type="title">標題</li>
                                 <li data-type="paragraphy">段落</li>
                                 <li data-type="image">圖片</li>
                             </ul>
@@ -77,46 +83,33 @@
                         <div class="down"></div>
                     </div>
                 </div>
-                <div class="element" data-type="title">
-                    <label>標題</label>
-                    <div class="content">
-                        <div class="COMPONENT_inputbox_text">
-                            <input type="text">
-                        </div>
-                    </div>
-                    <div class="btn_box">
-                        <div class="delete"></div>
-                        <div class="up"></div>
-                        <div class="down"></div>
-                    </div>
-                </div>
             </div>
             <div class="COMPONENT_article"></div>
             <textarea class="COMPONENT_article"></textarea>
         </section>
-        <section>
+        <section id="sec_message">
             <h2>留言管理</h2>
             <div class="COMPONENT_question">
                 <div>顯示留言</div>
                 <label class="COMPONENT_togglebtn open" for="showAllMessage"></label>
-                <input type="checkbox" checked id="showAllMessage">
+                <input type="checkbox" checked id="showAllMessage" data-savePosition="message.all">
             </div>
             <div class="message_list">
                 <div class="COMPONENT_message off">
-                    <img src="https://api.fnkr.net/testimg/80x80/0d2032/f0425c/?text=img">
+                    <img src="img/fakeimg/a1.png">
                     <h6>蝸牛</h6>
                     <p>親海上做廠在對則謝下程非請</p>
                     <label class="COMPONENT_togglebtn" for="ik3gu"></label>
                     <input type="checkbox" id="ik3gu">
                     <div class="COMPONENT_message off">
-                        <img src="https://api.fnkr.net/testimg/80x80/0d2032/f0425c/?text=img">
+                        <img src="img/fakeimg/a1.png">
                         <h6>蝸牛</h6>
                         <p>親海上做廠在對則謝下程非請</p>
                         <label class="COMPONENT_togglebtn" for="liefh"></label>
                         <input type="checkbox" id="liefh">
                     </div>
                     <div class="COMPONENT_message off">
-                        <img src="https://api.fnkr.net/testimg/80x80/0d2032/f0425c/?text=img">
+                        <img src="img/fakeimg/a1.png">
                         <h6>蝸牛</h6>
                         <p>親海上做廠在對則謝下程非請親海上做廠在對則謝下程非請親海上做廠在對則謝下程非請親海上做廠在對則謝下程非請親海上做廠在對則謝下程非請親海上做廠在對則謝下程非請親海上做廠在對則謝下程非請親海上做廠在對則謝下程非請</p>
                         <label class="COMPONENT_togglebtn" for="id3rq"></label>
@@ -124,20 +117,20 @@
                     </div>
                 </div>
                 <div class="COMPONENT_message">
-                    <img src="https://api.fnkr.net/testimg/80x80/0d2032/f0425c/?text=img">
+                    <img src="img/fakeimg/a1.png">
                     <h6>蝸牛</h6>
                     <p>親海上做廠在對則謝下程非請親海上做廠在對則謝下程非請親海上做廠在對則謝下程非請親海上做廠在對則謝下程非請親海上做廠在對則謝下程非請親海上做廠在對則謝下程非請親海上做廠在對則謝下程非請親海上做廠在對則謝下程非請</p>
                     <label class="COMPONENT_togglebtn open" for="asfad"></label>
                     <input type="checkbox" checked id="asfad">
                     <div class="COMPONENT_message">
-                        <img src="https://api.fnkr.net/testimg/80x80/0d2032/f0425c/?text=img">
+                        <img src="img/fakeimg/a1.png">
                         <h6>蝸牛</h6>
                         <p>親海上做廠在對則謝下程非請</p>
                         <label class="COMPONENT_togglebtn open" for="asdaef"></label>
                         <input type="checkbox" checked id="asdaef">
                     </div>
                     <div class="COMPONENT_message">
-                        <img src="https://api.fnkr.net/testimg/80x80/0d2032/f0425c/?text=img">
+                        <img src="img/fakeimg/a1.png">
                         <h6>蝸牛</h6>
                         <p>親海上做廠在對則謝下程非請親海上做廠在對則謝下程非請親海</p>
                         <label class="COMPONENT_togglebtn open" for="asdfaw"></label>

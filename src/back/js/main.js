@@ -5,6 +5,56 @@ global.window = $(window),
 global.win = $('#fixbox'),
 global.winW = global.win.width(),
 global.winH = global.win.height();
+global.elementHTML = function(type, label, content){
+    return `<div class="element" data-type=${type}>
+                <label>${label}</label>
+                <div class="content">${content}</div>
+                <div class="btn_box">
+                    <div class="delete"></div>
+                    <div class="up"></div>
+                    <div class="down"></div>
+                </div>
+            </div>`;
+}
+global.element_content = {
+    'title': {
+        'label': '標題',
+        'content': `<div class="COMPONENT_inputbox_text">
+                        <input type="text">
+                    </div>`
+    },
+    'paragraphy': {
+        'label': '段落',
+        'content':  `<textarea class="COMPONENT_inputbox_textarea">`+
+                    `</textarea>`
+    },
+    'image': {
+        'label': '圖片',
+        'content': `<div class="COMPONENT_inputbox_image">
+                        <input type="file" id="img_">
+                        <label for="upload_img"></label>
+                    </div>`
+    },
+    'member': {
+        'label': '成員',
+        'content': `<div class="member">
+                        <div class="img">
+                            <div class="COMPONENT_inputbox_image">
+                                <input type="file" id="upload_img" accept="image/jpeg, image/png">
+                                <label for="upload_img"></label>
+                            </div>
+                        </div>
+                        <div class="text">
+                            <div class="COMPONENT_inputbox_text">
+                                <input type="text" placeholder="姓名">
+                            </div>
+                            <div class="COMPONENT_inputbox_text">
+                                <input type="text" placeholder="職位">
+                            </div>
+                        </div>
+                    </div>`
+    }
+}
 
 // COMPONENT
     function togglebtn(){
@@ -173,45 +223,6 @@ global.winH = global.win.height();
         }
         function COMPONENT_addElement(){
             let _this = $(this);
-            let element_content = {
-                'title': {
-                    'label': '標題',
-                    'content': `<div class="COMPONENT_inputbox_text">
-                                    <input type="text">
-                                </div>`
-                },
-                'paragraphy': {
-                    'label': '段落',
-                    'content':  `<textarea class="COMPONENT_inputbox_textarea">`+
-                                `</textarea>`
-                },
-                'image': {
-                    'label': '圖片',
-                    'content': `<div class="COMPONENT_inputbox_image">
-                                    <input type="file" id="img_">
-                                    <label for="upload_img"></label>
-                                </div>`
-                },
-                'member': {
-                    'label': '成員',
-                    'content': `<div class="member">
-                                    <div class="img">
-                                        <div class="COMPONENT_inputbox_image">
-                                            <input type="file" id="upload_img" accept="image/jpeg, image/png">
-                                            <label for="upload_img"></label>
-                                        </div>
-                                    </div>
-                                    <div class="text">
-                                        <div class="COMPONENT_inputbox_text">
-                                            <input type="text" placeholder="姓名">
-                                        </div>
-                                        <div class="COMPONENT_inputbox_text">
-                                            <input type="text" placeholder="職位">
-                                        </div>
-                                    </div>
-                                </div>`
-                }
-            };
             let element_type = _this.parent().siblings('.content').children().children('div').attr('data-type');
             let image_id = '';
             if(element_type == 'image'){
@@ -224,21 +235,13 @@ global.winH = global.win.height();
                 var second = time.getSeconds().toString();
                 image_id = year + month + date + hour + minute + second;
             }
-            _this.parents('.element').before(`
-                <div class="element" data-type=${element_type}>
-                    <label>
-                        ${element_content[element_type]['label']}
-                    </label>
-                    <div class="content">
-                        ${element_content[element_type]['content']}
-                    </div>
-                    <div class="btn_box">
-                        <div class="delete"></div>
-                        <div class="up"></div>
-                        <div class="down"></div>
-                    </div>
-                </div>
-            `).prev('.element').find('.COMPONENT_inputbox_image input').attr('id', 'img_'+ image_id).siblings('label').attr('for', 'img_'+ image_id);
+            _this.parents('.element').before(global.elementHTML(
+                element_type,
+                global.element_content[element_type]['label'],
+                global.element_content[element_type]['content']
+            ))
+                .prev('.element').find('.COMPONENT_inputbox_image input').attr('id', 'img_'+ image_id)
+                .siblings('label').attr('for', 'img_'+ image_id);
             COMPONENT_reset_elementbox_height();
             COMPONENT_reset_element_position();
         }
@@ -297,6 +300,61 @@ global.winH = global.win.height();
 function init(){
     global.winW = global.win.width();
     global.winH = global.win.height();
+    let $elementbox = $('.COMPONENT_elementbox');
+    let element_length = $elementbox.children().length;
+    let type, value;
+    for(let i = 0; i < element_length; i++){
+        let $element = $elementbox.children().eq(i);
+        let elementType = $element.prop("tagName").toLowerCase();
+        switch (elementType) {
+            case 'h3':
+                type = 'title';
+                value = $element.text();
+                $element.before(
+                    global.elementHTML(
+                        type, 
+                        global.element_content[type]['label'],
+                        global.element_content[type]['content']
+                    )
+                ).prev().find('input').val(value)
+                .parents('.element').next().remove();
+                break;
+            case 'p':
+                type = 'paragraphy';
+                value = $element.text();
+                $element.before(
+                    global.elementHTML(
+                        type, 
+                        global.element_content[type]['label'],
+                        global.element_content[type]['content']
+                    )
+                ).prev().find('textarea').val(value)
+                .parents('.element').next().remove();
+                break;
+            case 'img':
+                type = 'image';
+                value = $element.attr('src');
+                var time = new Date();
+                var year = time.getFullYear().toString();
+                var month = time.getMonth().toString();
+                var date = time.getDate().toString();
+                var hour = time.getHours().toString();
+                var minute = time.getMinutes().toString();
+                var second = time.getSeconds().toString();
+                let image_id = 'upload_img' + year + month + date + hour + minute + second;
+                $element.before(
+                    global.elementHTML(
+                        type, 
+                        global.element_content[type]['label'],
+                        global.element_content[type]['content']
+                    )
+                ).prev().find('.COMPONENT_inputbox_image').attr('style', 'background-image: url('+ value +')')
+                .children('input').attr('id', image_id)
+                .siblings('label').attr('for', image_id)
+                .parents('.element').next().remove();
+                break;
+        }
+    }
     COMPONENT_reset_elementbox_height();
     COMPONENT_reset_element_position();
 }
