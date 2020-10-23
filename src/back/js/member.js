@@ -1,32 +1,39 @@
 (function(){
 'use strict';
 function init(){
-
 }
-function ajax_test(){
-    let now_url = window.location.pathname;
-    let post_data = {
-        'url': now_url,
-        'content': {
-            "a": "aaa",
-            "b": "bbb"
+function upload_img(){
+    $(this).parent().addClass('newImg');
+}
+function filltext(){
+    $(this).addClass('newText');
+}
+function save(){
+    let post_content = [];
+    let member_length = $('.COMPONENT_elementbox .element').length;
+    for(let i = 0; i < member_length; i++){
+        let $element = $('.COMPONENT_elementbox .element').eq(i);
+        if($element.attr('data-type') == 'member'){
+            let element_id = $element.attr('data-id');
+            let $imgbox = $element.find('.COMPONENT_inputbox_image');
+            let element_image = 
+                $imgbox.hasClass('newImg') ? 
+                $imgbox.css('background-image').slice(5, -2) : false;
+            let name = 
+                $element.find('.text div:nth-child(1) input').hasClass('newText') ?
+                $element.find('.text div:nth-child(1) input').val() : false;
+            let job = 
+                $element.find('.text div:nth-child(2) input').hasClass('newText') ?
+                $element.find('.text div:nth-child(2) input').val() : false;
+            post_content.push({element_id, element_image, name, job});
         }
-    };
-    $.ajax({
-        type: 'POST',
-        url: 'function/ajax_receiver.php',
-        dataType: 'text',
-        data: post_data,
-        success: function(data){
-            console.log(data);
-        },
-        error: function(data){
-            console.log('ERROR!');
-            console.log('data.status :'+ data.status);
-        }
-    });
+    }
+    ajax(post_content);
 }
 
 init();
-$('.ajax_btn').click(ajax_test);
+$('.COMPONENT_elementbox')
+    .on('change', 'input[type="file"]', upload_img)
+    .on('change', 'input[type="text"]', filltext);
+$('#save').click(save);
 }());

@@ -767,6 +767,12 @@
                                     background-image: url(../img/mainbtn_add.svg);
                                 }
                             }
+                            &.delete{
+                                &:after{
+                                    background-size: 31px 31px;
+                                    background-image: url(../img/mainbtn_delete.svg);
+                                }
+                            }
                             span{
                                 opacity: 0;
                                 right: 90px;
@@ -844,6 +850,61 @@
                 height: 100%;
                 position: fixed;
                 pointer-events: none;
+                .lightbox{
+                    top: 28px;
+                    opacity: 0;
+                    width: 284px;
+                    height: auto;
+                    position: fixed;
+                    transition: .3s;
+                    border-radius: 2px;
+                    background: #FBFBFB;
+                    padding: 61px 9px 77px;
+                    .flex(row, center, center);
+                    left: calc(~'50% - 142px');
+                    transform: translateY(15px);
+                    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.1),
+                                0px 16px 40px rgba(0, 0, 0, 0.12);
+                    .btnbox{
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        position: absolute;
+                        padding: 0 15px 15px;
+                        .flex(row, flex-end, flex-end);
+                        div{
+                            width: 58px;
+                            height: 33px;
+                            cursor: pointer;
+                            font-size: 14px;
+                            transition: .2s;
+                            border-radius: 2px;
+                            .flex(row, center, center);
+                            ~div{
+                                margin-left: 15px;
+                            }
+                            &.cancel{
+                                background-color: #F1F1F1;
+                                &:hover{
+                                    background-color: #E5E5E5;
+                                }
+                            }
+                            &.confirm{
+                                color: #FFF;
+                                background-color: @orange;
+                                &:hover{
+                                    box-shadow: @light;
+                                    background-color: @orange_light;
+                                }
+                            }
+                        }
+                    }
+                    &.open{
+                        opacity: 1;
+                        pointer-events: auto;
+                        transform: translateY(0);
+                    }
+                }
             }
             header{
                 top: 0;

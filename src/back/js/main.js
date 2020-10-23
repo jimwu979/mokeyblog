@@ -5,8 +5,8 @@ global.window = $(window),
 global.win = $('#fixbox'),
 global.winW = global.win.width(),
 global.winH = global.win.height();
-global.elementHTML = function(type, label, content){
-    return `<div class="element" data-type=${type}>
+global.elementHTML = function(type, data_id, label, content){
+    return `<div class="element" data-type="${type}" data-id="${data_id}">
                 <label>${label}</label>
                 <div class="content">${content}</div>
                 <div class="btn_box">
@@ -40,8 +40,8 @@ global.element_content = {
         'content': `<div class="member">
                         <div class="img">
                             <div class="COMPONENT_inputbox_image">
-                                <input type="file" id="upload_img" accept="image/jpeg, image/png">
-                                <label for="upload_img"></label>
+                                <input type="file" id="" accept="image/jpeg, image/png">
+                                <label for=""></label>
                             </div>
                         </div>
                         <div class="text">
@@ -132,18 +132,21 @@ global.element_content = {
             switch (nextElement_type) {
                 case 'title':
                     nextElement_value = {
+                        'data-id': $nextElement.attr('data-id'),
                         'htmlTag': 'input',
                         'value': $nextElement.find('input').val()
                     }
                     break;
                 case 'paragraphy':
                     nextElement_value = {
+                        'data-id': $nextElement.attr('data-id'),
                         'htmlTag': 'textarea',
                         'value': $nextElement.find('textarea').val()
                     }
                     break;
                 case 'image':
                     nextElement_value = {
+                        'data-id': $nextElement.attr('data-id'),
                         'htmlTag': 'input',
                         'value': $nextElement.find('input').val()
                     }
@@ -153,6 +156,7 @@ global.element_content = {
                     break;
                 case 'member':
                     nextElement_value = {
+                        'data-id': $nextElement.attr('data-id'),
                         'image': {
                             'htmlTag': 'input[type="file"]',
                             'value': $nextElement.find('input[type="file"]').val()
@@ -176,6 +180,7 @@ global.element_content = {
                     `<div   class="element" 
                             style="top: ${prevElement_T}px"
                             data-type="${nextElement_type}"
+                            data-id="${nextElement_value['data-id']}"
                     >
                         ${nextElement_html}
                     </div>`);
@@ -183,23 +188,23 @@ global.element_content = {
                 switch ($prevElement_prev.attr('data-type')) {
                     case 'title':
                         $prevElement_prev
-                        .find(nextElement_value['htmlTag'])
-                        .val(nextElement_value['value']);
+                            .find(nextElement_value['htmlTag'])
+                            .val(nextElement_value['value']);
                         break;
                     case 'paragraphy':
                         $prevElement_prev
-                        .find(nextElement_value['htmlTag'])
-                        .val(nextElement_value['value']);
+                            .find(nextElement_value['htmlTag'])
+                            .val(nextElement_value['value']);
                         break;
                     case 'image':
                         $prevElement_prev
-                        .find(nextElement_value['htmlTag']).value
-                        = nextElement_value['value'];
+                            .find(nextElement_value['htmlTag']).value
+                            = nextElement_value['value'];
                         break;
                     case 'member':
                         $prevElement_prev
-                        .find(nextElement_value['image']['htmlTag']).value
-                        = nextElement_value['image']['value'];
+                            .find(nextElement_value['image']['htmlTag']).value
+                            = nextElement_value['image']['value'];
                         $prevElement_prev
                             .find(nextElement_value['name']['htmlTag'])
                             .val(nextElement_value['name']['value']);
@@ -224,66 +229,66 @@ global.element_content = {
         function COMPONENT_addElement(){
             let _this = $(this);
             let element_type = _this.parent().siblings('.content').children().children('div').attr('data-type');
-            let image_id = '';
-            if(element_type == 'image'){
-                var time = new Date();
-                var year = time.getFullYear().toString();
-                var month = time.getMonth().toString();
-                var date = time.getDate().toString();
-                var hour = time.getHours().toString();
-                var minute = time.getMinutes().toString();
-                var second = time.getSeconds().toString();
-                image_id = year + month + date + hour + minute + second;
-            }
+            let getTime = '';
+            var time = new Date();
+            var year = time.getFullYear().toString();
+            var month = time.getMonth().toString();
+            var date = time.getDate().toString();
+            var hour = time.getHours().toString();
+            var minute = time.getMinutes().toString();
+            var second = time.getSeconds().toString();
+            getTime = year + month + date + hour + minute + second;
+            let data_id = 'element_'+ getTime;
             _this.parents('.element').before(global.elementHTML(
                 element_type,
+                data_id,
                 global.element_content[element_type]['label'],
                 global.element_content[element_type]['content']
             ))
-                .prev('.element').find('.COMPONENT_inputbox_image input').attr('id', 'img_'+ image_id)
-                .siblings('label').attr('for', 'img_'+ image_id);
+                .prev('.element').find('.COMPONENT_inputbox_image input').attr('id', 'img_'+ getTime)
+                .siblings('label').attr('for', 'img_'+ getTime);
             COMPONENT_reset_elementbox_height();
             COMPONENT_reset_element_position();
         }
-        function COMPONENT_buildArticle(){
-            let article = '';
-            let $elementbox = $('.COMPONENT_elementbox');
-            let $element = $elementbox.children('.element');
-            let element_length = $element.length;
-            for(let i = 0; i < element_length; i++){
-                let $element_eq = $element.eq(i);
-                let element_type = $element_eq.attr('data-type');
-                let element_tag;
-                if (element_type == 'title') {
-                    article += 
-                        `<h3>
-                            ${$element_eq.find('.content input').val()}
-                        </h3>`
-                } else if (element_type == 'paragraphy') {
-                    article += 
-                        `<p>
-                            ${$element_eq.find('.content textarea').val()}
-                        </p>`
-                } else if (element_type == 'image') {
-                    let background_image = $element_eq.find('.COMPONENT_inputbox_image').css('background-image');
-                    article += 
-                        `<img src='${background_image}'>`
-                } else if (element_type == 'member'){
+        // function COMPONENT_buildArticle(){
+        //     let article = '';
+        //     let $elementbox = $('.COMPONENT_elementbox');
+        //     let $element = $elementbox.children('.element');
+        //     let element_length = $element.length;
+        //     for(let i = 0; i < element_length; i++){
+        //         let $element_eq = $element.eq(i);
+        //         let element_type = $element_eq.attr('data-type');
+        //         let element_tag;
+        //         if (element_type == 'title') {
+        //             article += 
+        //                 `<h3>
+        //                     ${$element_eq.find('.content input').val()}
+        //                 </h3>`
+        //         } else if (element_type == 'paragraphy') {
+        //             article += 
+        //                 `<p>
+        //                     ${$element_eq.find('.content textarea').val()}
+        //                 </p>`
+        //         } else if (element_type == 'image') {
+        //             let background_image = $element_eq.find('.COMPONENT_inputbox_image').css('background-image');
+        //             article += 
+        //                 `<img src='${background_image}'>`
+        //         } else if (element_type == 'member'){
                     
-                }
-                // $('.COMPONENT_article').append(`
-                //     <div style='width: 300px; height: 200px;background-image: ` + $element_eq.find('.COMPONENT_inputbox_image').css('background-image') +
-                // `'>`)
+        //         }
+        //         // $('.COMPONENT_article').append(`
+        //         //     <div style='width: 300px; height: 200px;background-image: ` + $element_eq.find('.COMPONENT_inputbox_image').css('background-image') +
+        //         // `'>`)
                 
-                // $('.COMPONENT_article').append(`
-                //     <img src=' `+
-                //             $element_eq.find('.COMPONENT_inputbox_image').css('background-image') +
-                //     `'/>
-                // `)
-            }
-            // $('.COMPONENT_article').html(article);
-            event.stopPropagation();
-        }
+        //         // $('.COMPONENT_article').append(`
+        //         //     <img src=' `+
+        //         //             $element_eq.find('.COMPONENT_inputbox_image').css('background-image') +
+        //         //     `'/>
+        //         // `)
+        //     }
+        //     // $('.COMPONENT_article').html(article);
+        //     event.stopPropagation();
+        // }
     // input[radio]
         function COMPONENT_selectRadio(){
             $(this).addClass('check')
@@ -302,7 +307,7 @@ function init(){
     global.winH = global.win.height();
     let $elementbox = $('.COMPONENT_elementbox');
     let element_length = $elementbox.children().length;
-    let type, value;
+    let type, value, data_id;
     for(let i = 0; i < element_length; i++){
         let $element = $elementbox.children().eq(i);
         let elementType = $element.prop("tagName").toLowerCase();
@@ -310,9 +315,11 @@ function init(){
             case 'h3':
                 type = 'title';
                 value = $element.text();
+                data_id = $element.attr('data-id');
                 $element.before(
                     global.elementHTML(
-                        type, 
+                        type,
+                        data_id,
                         global.element_content[type]['label'],
                         global.element_content[type]['content']
                     )
@@ -322,9 +329,11 @@ function init(){
             case 'p':
                 type = 'paragraphy';
                 value = $element.text();
+                data_id = $element.attr('data-id');
                 $element.before(
                     global.elementHTML(
-                        type, 
+                        type,
+                        data_id,
                         global.element_content[type]['label'],
                         global.element_content[type]['content']
                     )
@@ -333,6 +342,7 @@ function init(){
                 break;
             case 'img':
                 type = 'image';
+                data_id = $element.attr('data-id');
                 value = $element.attr('src');
                 var time = new Date();
                 var year = time.getFullYear().toString();
@@ -344,7 +354,8 @@ function init(){
                 let image_id = 'upload_img' + year + month + date + hour + minute + second;
                 $element.before(
                     global.elementHTML(
-                        type, 
+                        type,
+                        data_id,
                         global.element_content[type]['label'],
                         global.element_content[type]['content']
                     )
@@ -381,7 +392,6 @@ function ajax(dataContent){
 function toggleMenu(){
     $(this).parent().toggleClass('open');
 }
-
 // COMPONENT
     $('.COMPONENT_elementbox')
         .on('click', '.btn_box .delete', COMPONENT_removeElement)
@@ -400,7 +410,7 @@ function toggleMenu(){
 init();
 $(window).resize(init);
 $('header .menu_btn').click(toggleMenu);
-$('.main_btn .save').click(COMPONENT_buildArticle);
+// $('.main_btn .save').click(COMPONENT_buildArticle);
 
 // test!
 	$('html head').prepend(

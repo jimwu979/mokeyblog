@@ -13,7 +13,10 @@ let post_content = {
         'banner': false,
         'slideShow': false
     },
-    'article': '',
+    'article': {
+        'html': false,
+        'img':[]
+    },
     'message': {
         'all': false,
         'each': []
@@ -30,6 +33,7 @@ function save(){
             let $element = $elementbox.children().eq(i);
             let element_type = $element.attr('data-type');
             let value;
+            let data_id;
             switch (element_type) {
                 case 'title':
                     value = $element.find('input').val();
@@ -40,16 +44,48 @@ function save(){
                     article += `<p>${value}</p>`;
                     break;
                 case 'image':
-                    value = $element.find('.COMPONENT_inputbox_image').css('background-image').slice(5, -2);
-                    article += `<img src='${value}'/>`;
+                    let $inputbox_image = $element.find('.COMPONENT_inputbox_image');
+                    let inputboxBGI = $inputbox_image.css('background-image');
+                    let base64_start = inputboxBGI.indexOf(';base64,');
+                    if (base64_start != -1) {
+                        let img_base64 = inputboxBGI.slice(5, -2);
+                        let imgFormat = img_base64.slice(0, base64_start);
+                        if (imgFormat.indexOf('jpeg') != -1) {
+                            imgFormat = 'jpeg';
+                        } else if (imgFormat.indexOf('jpg') != -1){
+                            imgFormat = 'jpg';
+                        } else if (imgFormat.indexOf('png') != -1){
+                            imgFormat = 'png';
+                        } else if (imgFormat.indexOf('svg') != -1){
+                            imgFormat = 'svg';
+                        }
+                        value = $element.find('input').attr('id') + '.' + imgFormat;
+                        article += `<img src='img/${value}'/>`;
+                        
+                        let searchArray = 
+                            $.map(  post_content.article.img, 
+                                    function(item, index) {
+                                        return item.value
+                            })
+                            .indexOf(value);
+                        if (searchArray == -1) {
+                            post_content.article.img.push({value, img_base64});
+                        } else {
+                            post_content.article.img[searchArray]['img_base64'] = img_base64;
+                        }
+                    }else{
+                        value = inputboxBGI.slice(5, -2);
+                        article += `<img src='${value}'/>`;
+                    }
                     break;
             }
-            post_content.article = article;
+            post_content.article.html = article;
         }
     }
-    console.log(post_content);
+    // console.log(post_content.article);
     ajax(post_content);
-    event.preventDefault();
+    // alert('儲存完成！');
+    $('#saveSuccess').addClass('open');
 }
 function display_allmessage(){
     let _this = $(this);
@@ -86,6 +122,19 @@ function fill_message(){
 function fillArticle(){
     $(this).addClass('fill');
 }
+function deleteArticle(){
+    ajax('delete');
+    goToBlogList();
+}
+function whetherToConfirmDelete(){
+    $('.whetherToDeleteArticle').addClass('open');
+}
+function closeLightbox(){
+    $(this).parents('.lightbox').removeClass('open');
+}
+function goToBlogList(){
+    location.href = 'blog_list.php';
+}
 
 init();
 $('.COMPONENT_elementbox').click(fillArticle);
@@ -93,4 +142,8 @@ $('#sec_information input').change(fill_information);
 $('#sec_message input#showAllMessage').change(display_allmessage);
 $('#sec_message .message_list input').change(fill_message);
 $('#save').click(save);
+$('#delete').click(whetherToConfirmDelete);
+$('#whetherToDeleteArticle .cancel').click(closeLightbox);
+$('#whetherToDeleteArticle .confirm').click(deleteArticle);
+$('#saveSuccess .confirm').click(goToBlogList);
 }());
