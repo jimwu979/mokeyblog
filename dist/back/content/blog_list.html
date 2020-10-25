@@ -11,106 +11,25 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="img">
-                        <img src="https://api.fnkr.net/testimg/200x160/0d2032/f0425c/?text=img">
-                    </td>
-                    <td class="title">全球化的設計、本地化的思維</td>
-                    <td class="date">2020-05-14</td>
-                    <td class="edit">
-                        <a href="blog_article.php"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="img">
-                        <img src="https://api.fnkr.net/testimg/200x160/0d2032/f0425c/?text=img">
-                    </td>
-                    <td class="title">全球化的設計、本地化的思維全球化的設計、本地化的思維全球化的設計、本地化的思維全球化的設計、本地化的思維</td>
-                    <td class="date">2020-05-14</td>
-                    <td class="edit">
-                        <a href="blog_article.php"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="img">
-                        <img src="https://api.fnkr.net/testimg/200x160/0d2032/f0425c/?text=img">
-                    </td>
-                    <td class="title">全球化的設計、本地化的思維全球化的設計、本地化的思維全球化的設計、本地化的思維全球化的設計、本地化的思維全球化的設計、本地化的思維全球化的設計、本地化的思維全球化的設計、本地化的思維全球化的設計、本地化的思維全球化的設計、本地化的思維設計、本地化的思維全球化的設計、本地化的思維全球化的設計、本地化的思維設計、本地化的思維全球化的設計、本地化的思維全球化的設計、本地化的思維</td>
-                    <td class="date">2020-05-14</td>
-                    <td class="edit">
-                        <a href="blog_article.php"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="img">
-                        <img src="https://api.fnkr.net/testimg/200x160/0d2032/f0425c/?text=img">
-                    </td>
-                    <td class="title">全球化的設計、本地化的思維</td>
-                    <td class="date">2020-05-14</td>
-                    <td class="edit">
-                        <a href="blog_article.php"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="img">
-                        <img src="https://api.fnkr.net/testimg/200x160/0d2032/f0425c/?text=img">
-                    </td>
-                    <td class="title">全球化的設計、本地化的思維</td>
-                    <td class="date">2020-05-14</td>
-                    <td class="edit">
-                        <a href="blog_article.php"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="img">
-                        <img src="https://api.fnkr.net/testimg/200x160/0d2032/f0425c/?text=img">
-                    </td>
-                    <td class="title">全球化的設計、本地化的思維全球化的設計、本地化的思維全球化的設計、本地化的思維全球化的設計、本地化的思維</td>
-                    <td class="date">2020-05-14</td>
-                    <td class="edit">
-                        <a href="blog_article.php"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="img">
-                        <img src="https://api.fnkr.net/testimg/200x160/0d2032/f0425c/?text=img">
-                    </td>
-                    <td class="title">全球化的設計、本地化的思維全球化的設計、本地化的思維全球化的設計的思維</td>
-                    <td class="date">2020-05-14</td>
-                    <td class="edit">
-                        <a href="blog_article.php"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="img">
-                        <img src="https://api.fnkr.net/testimg/200x160/0d2032/f0425c/?text=img">
-                    </td>
-                    <td class="title">全球化的設計、本地化的思維</td>
-                    <td class="date">2020-05-14</td>
-                    <td class="edit">
-                        <a href="blog_article.php"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="img">
-                        <img src="https://api.fnkr.net/testimg/200x160/0d2032/f0425c/?text=img">
-                    </td>
-                    <td class="title">全球化的設計、本地化的思維全球化的設計</td>
-                    <td class="date">2020-05-14</td>
-                    <td class="edit">
-                        <a href="blog_article.php"></a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="img">
-                        <img src="https://api.fnkr.net/testimg/200x160/0d2032/f0425c/?text=img">
-                    </td>
-                    <td class="title">全球化的設計、本地化的思維</td>
-                    <td class="date">2020-05-14</td>
-                    <td class="edit">
-                        <a href="blog_article.php"></a>
-                    </td>
-                </tr>
+			<?php
+				include('function/dbHelper.php');
+				$helper = new dbHelper();
+				$result = $helper->getRows('article');
+				if(mysqli_num_rows($result) > 0){
+					while($row = mysqli_fetch_array($result)){
+						echo "<tr>";
+						echo "<td class=\"img\">
+								<img src=\"https://api.fnkr.net/testimg/200x160/0d2032/f0425c/?text=img\">
+							  </td>";
+						echo "<td class=\"title\">" . $row['title'] . "</td>";
+						echo "<td class=\"date\">" . date_format(date_create($row['create_time']),'Y/m/d') . "</td>";
+						echo "<td class=\"edit\"><a href=\"blog_article.php?id=".$row['id']."\"></a></td>";
+						echo "</tr>";
+					}
+					// Free result set
+					mysqli_free_result($result);
+				} 
+			?>
             </tbody>
         </table>
         <div class="main_btn">
