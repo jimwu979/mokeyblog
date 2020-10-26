@@ -29,6 +29,10 @@ function save(){
         }
     }
     ajax(post_content);
+    $('#saveSuccess').addClass('open');
+}
+function closeLightbox(){
+    $('#saveSuccess').removeClass('open');
 }
 
 init();
@@ -36,4 +40,5 @@ $('.COMPONENT_elementbox')
     .on('change', 'input[type="file"]', upload_img)
     .on('change', 'input[type="text"]', filltext);
 $('#save').click(save);
+$('#saveSuccess .confirm').click(closeLightbox);
 }());
