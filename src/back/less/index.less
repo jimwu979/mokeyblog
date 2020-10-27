@@ -11,6 +11,17 @@ body{
                 }
                 .COMPONENT_elementbox{
                     .element{
+                        .loop(@counter) when (@counter > 0) {
+                            .loop((@counter - 1));    
+                            &:nth-of-type(@{counter}){
+                                label{
+                                    &:after{
+                                        content: '@{counter}';
+                                    }
+                                }
+                            }
+                        }
+                        .loop(100);
                         ~.element{
                             
                         }
@@ -24,6 +35,7 @@ body{
                             h3{
                                 top: 0;
                                 left: 0;
+                                line-height: 28px;
                                 position: absolute;
                             }
                         }

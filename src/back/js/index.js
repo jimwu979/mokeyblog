@@ -6,13 +6,18 @@ function init(){
 function saveSlideShow(){
     let $element = $('.COMPONENT_elementbox > .element');
     let sideshow_length = $element.length;
-    let form_url = $('#form').attr('action') + '?'; 
+    let post_content = [];
     for(let i = 0; i < sideshow_length; i++){
-        form_url += $element.eq(i).find('h3').attr('data-id') +'&';
+        post_content.push($element.eq(i).find('h3').attr('data-id'));
     }
-    $('#form').attr('action', form_url).trigger('submit');
+    ajax(post_content);
+    $('#saveSuccess').addClass('open');
+}
+function closeLightbox(){
+    $('#saveSuccess').removeClass('open');
 }
 
 init();
 $('.main_btn .save').click(saveSlideShow);
+$('#saveSuccess .confirm').click(closeLightbox);
 }());
