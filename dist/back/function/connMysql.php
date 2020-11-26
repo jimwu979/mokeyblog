@@ -31,7 +31,7 @@ class Database {
 	
 		// Error handling
 		if(mysqli_connect_error()) {
-			trigger_error("資料庫連線錯誤: " . mysql_connect_error(),
+			trigger_error("資料庫連線錯誤: " . mysqli_connect_error(),
 				 E_USER_ERROR);
 		}
 	}
